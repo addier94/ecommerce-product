@@ -19,44 +19,144 @@
       filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
         contrast(100%);
     }
+    #imagesContent {
+      transition: left 0.5s ease-in-out;
+      /* position: relative; */
+    }
+    @media (max-width: 768px) {
+      #mobile-menu {
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+      }
+      #mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    #cart-container {
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+    }
+    #cart-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .active-link {
+      border: 3px solid hsl(26, 100%, 55%);
+      border-radius: 0.75rem;
+    }
+
+    .active-image {
+      opacity: 0.3;
+    }
   </style>
 
   <body class="font-sans text-neutral-darkGrayishBlue">
     <main>
       <!-- Nav -->
-      <nav class="flex justify-between items-center px-5 py-3">
-        <div class="flex items-center gap-4">
-          <img src="images/icon-menu.svg" alt="Icon" class="h-4 w-[15px]" />
+      <nav
+        class="flex justify-between items-center border-b mx-5 py-3 md:py-0 max-w-screen-lg md:mx-auto md:px-4 lg:px-0"
+      >
+        <section class="flex items-center gap-4 md:gap-12">
+          <img
+            src="images/icon-menu.svg"
+            alt="Icon"
+            class="h-4 w-[15px] cursor-pointer md:hidden"
+            id="bar"
+          />
           <h1 class="text-3xl font-bold mb-1 text-neutral-veryDarkBlue">
             sneakers
           </h1>
-        </div>
-        <aside class="flex items-center gap-4">
+          <!-- Menu mobile -->
+          <article
+            class="absolute md:opacity-100 md:static w-full h-full z-50 md:z-0 top-0 left-0 md:bg-transparent bg-neutral-black"
+            id="mobile-menu"
+          >
+            <aside
+              class="p-6 md:p-0 absolute md:static top-0 left-0 bg-neutral-white h-full w-[70%] md:w-full"
+            >
+              <img
+                class="cursor-pointer md:hidden"
+                src="images/icon-close.svg"
+                alt="Icon Close"
+                id="close"
+              />
+              <nav class="mt-10 md:mt-0">
+                <ul
+                  class="md:flex-row flex flex-col gap-4 text-lg text-neutral-veryDarkBlue font-bold md:font-normal text-[15px] md:text-neutral-darkGrayishBlue"
+                >
+                  <a
+                    class="md:py-6 transition-all border-b-2 border-b-transparent hover:md:border-primary-orange hover:border-b-2 md:hover:text-neutral-veryDarkBlue"
+                    href="#"
+                    >Collections</a
+                  >
+                  <a
+                    class="md:py-6 transition-all border-b-2 border-b-transparent hover:md:border-primary-orange hover:border-b-2 md:hover:text-neutral-veryDarkBlue"
+                    href="#"
+                    >Men</a
+                  >
+                  <a
+                    class="md:py-6 transition-all border-b-2 border-b-transparent hover:md:border-primary-orange hover:border-b-2 md:hover:text-neutral-veryDarkBlue"
+                    href="#"
+                    >Women</a
+                  >
+                  <a
+                    class="md:py-6 transition-all border-b-2 border-b-transparent hover:md:border-primary-orange hover:border-b-2 md:hover:text-neutral-veryDarkBlue"
+                    href="#"
+                    >About</a
+                  >
+                  <a
+                    class="md:py-6 transition-all border-b-2 border-b-transparent hover:md:border-primary-orange hover:border-b-2 md:hover:text-neutral-veryDarkBlue"
+                    href="#"
+                    >Contact</a
+                  >
+                </ul>
+              </nav>
+            </aside>
+          </article>
+          <!-- end menu mobile -->
+        </section>
+        <aside class="flex items-center gap-4 md:gap-12">
           <div class="relative">
-            <img src="images/icon-cart.svg" alt="Icon" class="h-5 w-[21px]" />
+            <img
+              src="images/icon-cart.svg"
+              alt="Icon"
+              class="h-5 w-[21px] cursor-pointer"
+              id="cart-icon"
+            />
             <div
               class="absolute -right-2.5 -top-1.5 z-10 bg-primary-orange rounded-full px-2 text-xs font-bold text-neutral-white"
+              id="badge-cart"
             >
-              3
+              <!-- 3 -->
             </div>
           </div>
           <img
             src="images/image-avatar.png"
             alt="Profile Image"
-            class="h-6 w-6"
+            class="h-6 w-6 md:w-[50px] md:h-[50px]"
           />
         </aside>
       </nav>
       <!-- End nav -->
 
       <!-- Card -->
-      <article class="absolute top-16 p-2 z-40 w-full">
+      <article
+        class="absolute top-16 p-2 z-40 w-full sm:w-96 sm:right-4"
+        id="cart-container"
+      >
         <div class="bg-neutral-white rounded-lg shadow-2xl">
           <h4 class="p-[23px] font-bold text-neutral-veryDarkBlue">Cart</h4>
           <hr />
-          <!-- <p class="py-20 text-center font-bold">Your cart is empty.</p> -->
-          <article class="px-[23px] py-7 flex flex-col gap-3">
-            <section class="flex justify-between items-center gap-4">
+          <p class="py-20 text-center font-bold" id="empty-cart-message">
+            Your cart is empty.
+          </p>
+          <article class="px-[23px] py-7 flex flex-col gap-3" id="cart-content">
+            <!-- <section class="flex justify-between items-center gap-4">
               <img
                 class="w-12 rounded-md flex-grow"
                 src="images/image-product-1-thumbnail.jpg"
@@ -78,140 +178,271 @@
                   alt="Delete Icon"
                 />
               </figure>
-            </section>
-            <button
+            </section> -->
+            <!-- <button
               class="mt-6 h-[56px] bg-primary-orange w-full rounded-lg text-neutral-veryDarkBlue font-bold"
             >
               Checkout
-            </button>
+            </button> -->
           </article>
         </div>
       </article>
       <!-- end Card -->
 
       <!-- Slider -->
-      <div class="relative h-[300px]">
+      <div
+        class="relative w-full overflow-x-hidden h-[300px] md:hidden"
+        id="wrapper"
+      >
         <nav
           class="absolute z-10 flex justify-between px-5 w-full top-1/2 transform -translate-y-1/2"
         >
           <button
             class="rounded-full bg-white w-10 h-10 flex items-center justify-center"
+            id="btnPrev"
           >
             <img class="w-2 h-3" src="images/icon-previous.svg" alt="Icon" />
           </button>
           <button
             class="rounded-full bg-white w-10 h-10 flex items-center justify-center"
+            id="btnNext"
           >
             <img class="w-2 h-3" src="images/icon-next.svg" alt="Icon" />
           </button>
         </nav>
 
-        <div class="flex h-full w-[400%] relative left-[0%]">
-          <div class="flex-shrink-0 w-screen">
+        <div
+          class="flex h-full w-[400%] relative -left-[300%]"
+          id="imagesContent"
+        >
+          <!-- <div class="w-screen">
             <img
               class="h-full w-full object-cover"
               src="images/image-product-1.jpg"
               alt="Product 1"
             />
           </div>
-          <div class="flex-shrink-0 w-screen">
+          <div class="w-screen">
             <img
               class="h-full w-full object-cover"
               src="images/image-product-2.jpg"
               alt="Product 2"
             />
           </div>
-          <div class="flex-shrink-0 w-screen">
+          <div class="w-screen">
             <img
               class="h-full w-full object-cover"
               src="images/image-product-3.jpg"
               alt="Product 3"
             />
           </div>
-          <div class="flex-shrink-0 w-screen">
+          <div class="w-screen">
             <img
               class="h-full w-full object-cover"
               src="images/image-product-4.jpg"
               alt="Product 4"
             />
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- end Slider -->
 
       <!-- description -->
-      <article class="p-5">
-        <h2 class="text-xs font-semibold">SNEAKER COMPANY</h2>
-        <h1
-          class="text-neutral-veryDarkBlue font-bold text-[28px] leading-[1] mt-4"
+      <article
+        class="md:flex md:min-h-[calc(100vh_-_79px)] md:items-center md:px-4 lg:px-10 md:gap-20 md:max-w-screen-lg mx-auto"
+      >
+        <section
+          class="h-[565px] flex-1 hidden md:flex flex-col justify-center gap-6"
         >
-          Fall Limited Edition Sneakers
-        </h1>
-        <p class="mt-4">
-          These low-profile sneakers are. your perfect casual wear companion.
-          Featuring a durable nubber outer sole. they'll withstand everything
-          the weather can offer
-        </p>
-        <div class="mt-4 flex justify-between items-center font-semibold">
-          <p class="flex items-center gap-3">
-            <span class="text-neutral-veryDarkBlue text-[28px]">$125.00</span>
-            <span
-              class="bg-neutral-veryDarkBlue text-neutral-white px-[10px] rounded-md"
-              >50%</span
+          <article id="d-slider-container">
+            <!-- <img
+              class="rounded-lg cursor-pointer"
+              src="./images/image-product-1.jpg"
+              alt="image"
+            /> -->
+          </article>
+          <nav class="flex gap-4 justify-around" id="thumbnails-container">
+            <!-- <div class="active-link">
+              <img
+                class="rounded-lg active-image cursor-pointer w-[88px]"
+                src="./images/image-product-1-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px]"
+                src="./images/image-product-2-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px]"
+                src="./images/image-product-3-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px]"
+                src="./images/image-product-4-thumbnail.jpg"
+                alt="image"
+              />
+            </div> -->
+          </nav>
+        </section>
+        <section class="p-5 md:flex-1 md:p-0">
+          <section class="flex flex-col gap-4 md:gap-[22px] lg:gap-8 md:mb-4">
+            <div>
+              <h2 class="text-xs font-semibold mb-4" id="product-brand">
+                <!-- SNEAKER COMPANY -->
+              </h2>
+              <h1
+                class="text-neutral-veryDarkBlue font-bold text-[28px] md:text-[44px] leading-[1]"
+                id="product-title"
+              >
+                <!-- Fall Limited Edition Sneakers -->
+              </h1>
+            </div>
+            <p id="product-description">
+              <!-- These low-profile sneakers are. your perfect casual wear companion.
+              Featuring a durable nubber outer sole. they'll withstand everything
+              the weather can offer -->
+            </p>
+            <div
+              class="flex md:flex-col md:items-start justify-between items-center font-semibold"
             >
-          </p>
-          <p class="line-through">$250.00</p>
-        </div>
-        <nav
-          class="flex mt-4 justify-between items-center h-[56px] bg-neutral-lightGrayishBlue px-6"
-        >
-          <img
-            class="cursor-pointer"
-            src="images/icon-minus.svg"
-            alt="Icon minus"
-          />
-          <span class="text-neutral-veryDarkBlue font-bold">3</span>
-          <img
-            class="cursor-pointer"
-            src="images/icon-plus.svg"
-            alt="Icon plus"
-          />
-        </nav>
-        <button
-          class="bg-primary-orange w-full rounded-xl h-[56px] text-neutral-veryDarkBlue mt-4 flex items-center justify-center font-bold gap-3"
-        >
-          <img
-            class="w-[17.5px] h-4 icon-filter-black"
-            src="images/icon-cart.svg"
-            alt="Icon"
-          />
-          <span>Add to cart</span>
-        </button>
+              <p class="flex items-center gap-3">
+                <span
+                  class="text-neutral-veryDarkBlue text-[28px]"
+                  id="product-price"
+                >
+                  <!-- $125.00 -->
+                </span>
+                <span
+                  class="bg-neutral-veryDarkBlue text-neutral-white px-[10px] rounded-md"
+                  id="product-discount"
+                >
+                  <!-- 50% -->
+                </span>
+              </p>
+              <p class="line-through" id="product-original-price">
+                <!-- $250.00 -->
+              </p>
+            </div>
+          </section>
+          <section class="flex flex-col gap-4 md:flex-row">
+            <nav
+              class="flex md:w-3/5 justify-between items-center h-[56px] bg-neutral-lightGrayishBlue px-6"
+            >
+              <img
+                class="cursor-pointer"
+                src="images/icon-minus.svg"
+                alt="Icon minus"
+                id="quantity-decrease"
+              />
+              <span
+                class="text-neutral-veryDarkBlue font-bold"
+                id="product-quantity"
+              >
+                <!-- 3 -->
+              </span>
+              <img
+                class="cursor-pointer"
+                src="images/icon-plus.svg"
+                alt="Icon plus"
+                id="quantity-increase"
+              />
+            </nav>
+            <button
+              class="bg-primary-orange w-full rounded-xl h-[56px] text-neutral-veryDarkBlue flex items-center justify-center font-bold gap-3 duration-150 hover:opacity-65"
+              id="add-to-cart-btn"
+            >
+              <img
+                class="w-[17.5px] h-4 icon-filter-black"
+                src="images/icon-cart.svg"
+                alt="Icon"
+              />
+              <span>Add to cart</span>
+            </button>
+          </section>
+        </section>
       </article>
       <!-- end description -->
+
+      <!-- Modal Image -->
+      <!-- <article
+        class="bg-neutral-black absolute top-0 left-0 w-full min-h-full md:flex items-center justify-center hidden"
+      >
+        <section class="w-[550px] h-[722px] flex flex-col justify-center gap-5">
+          <article class="relative">
+            <img
+              class="rounded-lg cursor-pointer"
+              src="./images/image-product-1.jpg"
+              alt="image"
+            />
+            <img
+              class="absolute -top-6 right-0 cursor-pointer"
+              src="./images/icon-close.svg"
+              alt="Close Icon"
+            />
+            <nav
+              class="absolute z-10 flex justify-between w-full top-1/2 transform -translate-y-1/2"
+            >
+              <button
+                class="rounded-full bg-white -ml-6 w-10 h-10 flex items-center justify-center"
+                id="btnPrev"
+              >
+                <img
+                  class="w-2 h-3"
+                  src="images/icon-previous.svg"
+                  alt="Icon"
+                />
+              </button>
+              <button
+                class="rounded-full bg-white -mr-6 w-10 h-10 flex items-center justify-center"
+                id="btnNext"
+              >
+                <img class="w-2 h-3" src="images/icon-next.svg" alt="Icon" />
+              </button>
+            </nav>
+          </article>
+          <nav class="flex justify-center gap-5">
+            <div class="active-link">
+              <img
+                class="rounded-lg active-image cursor-pointer w-[88px] h-[88px]"
+                src="./images/image-product-1-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px] h-[88px]"
+                src="./images/image-product-2-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px] h-[88px]"
+                src="./images/image-product-3-thumbnail.jpg"
+                alt="image"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg cursor-pointer w-[88px] h-[88px]"
+                src="./images/image-product-4-thumbnail.jpg "
+                alt="image"
+              />
+            </div>
+          </nav>
+        </section>
+      </article> -->
+      <!-- End Modal Image -->
     </main>
 
-    <!-- Menu mobile -->
-    <!-- <article class="absolute w-full h-full z-50 top-0 left-0 bg-neutral-black">
-      <aside class="p-6 absolute top-0 left-0 bg-neutral-white h-full w-[70%]">
-        <img
-          class="cursor-pointer"
-          src="images/icon-close.svg"
-          alt="Icon Close"
-        />
-        <nav class="mt-10">
-          <ul
-            class="flex flex-col gap-4 text-lg text-neutral-veryDarkBlue font-bold"
-          >
-            <a href="#">Collections</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-          </ul>
-        </nav>
-      </aside>
-    </article> -->
-    <!-- end Menu mobile -->
+    <script type="module" src="./App.js"></script>
   </body>
 </html>
