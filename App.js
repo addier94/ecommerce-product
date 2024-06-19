@@ -3,6 +3,7 @@ import { Cart } from "./scripts/Cart.js";
 import { Product } from "./scripts/Product.js";
 import { Slider } from "./scripts/Slider.js";
 import { DesktopSlider } from "./scripts/DesktopSlider.js";
+import { SliderOnModal } from "./scripts/SliderOnModal.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize toggle menu
@@ -48,4 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // slider.init();
   const desktopSlider = new DesktopSlider();
   // desktopSlider.init();
+
+  // Open Modal
+  const dSliderContainer = document.getElementById("d-slider-container");
+  dSliderContainer.addEventListener("click", openImageModal);
+
+  let sliderOnModalInstance = null;
+
+  function openImageModal() {
+    const data = desktopSlider.openImageModal();
+
+    if (!sliderOnModalInstance) {
+      sliderOnModalInstance = new SliderOnModal(data);
+    } else {
+      sliderOnModalInstance.updateSlider(data);
+      sliderOnModalInstance.render();
+    }
+  }
 });

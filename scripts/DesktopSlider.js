@@ -106,4 +106,10 @@ export class DesktopSlider {
         />
     `;
   }
+
+  // Gallery on modal image
+  openImageModal() {
+    document.getElementById("open-image-modal").classList.add("active");
+    return this.data;
+  }
 }

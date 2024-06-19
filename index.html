@@ -35,6 +35,17 @@
       }
     }
 
+    #open-image-modal {
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #open-image-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     #cart-container {
       transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
       opacity: 0;
@@ -372,8 +383,9 @@
       <!-- end description -->
 
       <!-- Modal Image -->
-      <!-- <article
-        class="bg-neutral-black absolute top-0 left-0 w-full min-h-full md:flex items-center justify-center hidden"
+      <article
+        class="bg-neutral-black absolute top-0 left-0 w-full min-h-full flex items-center justify-center"
+        id="open-image-modal"
       >
         <section class="w-[550px] h-[722px] flex flex-col justify-center gap-5">
           <article class="relative">
@@ -381,18 +393,20 @@
               class="rounded-lg cursor-pointer"
               src="./images/image-product-1.jpg"
               alt="image"
+              id="image-modal-screen"
             />
             <img
               class="absolute -top-6 right-0 cursor-pointer"
               src="./images/icon-close.svg"
               alt="Close Icon"
+              id="close-image-modal"
             />
             <nav
               class="absolute z-10 flex justify-between w-full top-1/2 transform -translate-y-1/2"
             >
               <button
                 class="rounded-full bg-white -ml-6 w-10 h-10 flex items-center justify-center"
-                id="btnPrev"
+                id="btn-prev-slider-modal"
               >
                 <img
                   class="w-2 h-3"
@@ -402,14 +416,14 @@
               </button>
               <button
                 class="rounded-full bg-white -mr-6 w-10 h-10 flex items-center justify-center"
-                id="btnNext"
+                id="btn-next-slider-modal"
               >
                 <img class="w-2 h-3" src="images/icon-next.svg" alt="Icon" />
               </button>
             </nav>
           </article>
-          <nav class="flex justify-center gap-5">
-            <div class="active-link">
+          <nav class="flex justify-center gap-5" id="nav-thumbnails">
+            <!-- <div class="active-link">
               <img
                 class="rounded-lg active-image cursor-pointer w-[88px] h-[88px]"
                 src="./images/image-product-1-thumbnail.jpg"
@@ -436,10 +450,10 @@
                 src="./images/image-product-4-thumbnail.jpg "
                 alt="image"
               />
-            </div>
+            </div> -->
           </nav>
         </section>
-      </article> -->
+      </article>
       <!-- End Modal Image -->
     </main>
 
